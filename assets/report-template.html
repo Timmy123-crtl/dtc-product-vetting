@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>选品尽调报告 · 模板</title>
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --fg:#1b1e26; --muted:#5c6472;
+  --line:#e3e6ec; --accent:#2f6fed; --soft:#eef2fb;
+  --ok:#1a7f4b; --okbg:#e8f5ee; --warn:#8a5a00; --warnbg:#fff6e5;
+  --bad:#b42318; --badbg:#fdeceb; --info:#1d4ed8; --infobg:#eef2fb;
+}
+html[data-theme="dark"]{
+  --bg:#101318; --panel:#171b22; --fg:#e7eaf0; --muted:#9aa3b2;
+  --line:#262c37; --accent:#6b9dff; --soft:#1c2333;
+  --ok:#57c98b; --okbg:#152a1f; --warn:#e0a94a; --warnbg:#2a2314;
+  --bad:#f2706a; --badbg:#2b1a1a; --info:#7fa7ff; --infobg:#1a2135;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:15px/1.72 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+
+header.top{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+h1{font-size:30px;line-height:1.3;margin:0 0 10px;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:0;font-size:14.5px;max-width:820px}
+
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.meta span{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  padding:5px 13px;font-size:12.5px;color:var(--muted)}
+.meta span b{color:var(--fg)}
+
+nav{position:sticky;top:0;z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px;
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;font-size:13px;color:var(--muted);text-decoration:none;
+  padding:6px 11px;border-radius:7px;border:1px solid transparent}
+nav a:hover{background:var(--soft);color:var(--accent);border-color:var(--line)}
+
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+h2{font-size:21px;margin:0 0 14px;letter-spacing:-.01em}
+h2 .num{display:inline-block;font-size:11.5px;letter-spacing:.1em;color:var(--accent);
+  background:var(--soft);border-radius:5px;padding:3px 8px;margin-right:10px;
+  vertical-align:3px;font-weight:600}
+h3{font-size:16px;margin:26px 0 10px;color:var(--fg)}
+p{margin:0 0 12px}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);font-weight:600;font-size:12.5px;color:var(--muted);
+  letter-spacing:.02em;white-space:nowrap}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--soft)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.tw table{margin:0}
+
+.chip{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:5px;
+  font-weight:600;white-space:nowrap}
+.chip.a{color:var(--ok);background:var(--okbg)}
+.chip.b{color:var(--info);background:var(--infobg)}
+.chip.c{color:var(--warn);background:var(--warnbg)}
+.chip.d{color:var(--muted);background:var(--soft)}
+.chip.x{color:var(--bad);background:var(--badbg)}
+
+.callout{border-left:3px solid var(--accent);background:var(--panel);
+  border-radius:0 9px 9px 0;padding:14px 18px;margin:18px 0;border:1px solid var(--line);
+  border-left-width:3px}
+.callout .lb{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;
+  color:var(--accent);margin-bottom:6px}
+.callout p{margin:0;font-size:14px}
+.callout.warn{border-left-color:var(--warn)} .callout.warn .lb{color:var(--warn)}
+.callout.danger{border-left-color:var(--bad)} .callout.danger .lb{color:var(--bad)}
+.callout.ok{border-left-color:var(--ok)} .callout.ok .lb{color:var(--ok)}
+
+.srcnote{font-size:12px;color:var(--muted);margin:6px 0 0}
+
+footer{padding:30px 0;color:var(--muted);font-size:12.5px;line-height:1.9}
+
+#theme{position:fixed;right:22px;bottom:22px;z-index:20;border:1px solid var(--line);
+  background:var(--panel);color:var(--fg);border-radius:999px;padding:9px 16px;
+  font-size:12.5px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>报告标题：一句话说清结论</h1>
+  <p class="sub">副标题写清楚：市场、周期、候选数量、验证轮次、数据采集时间。让读者在三秒内知道这份文档的可信边界。</p>
+  <div class="meta">
+    <span>市场 <b>US</b></span>
+    <span>候选 <b>N 个</b></span>
+    <span>验证 <b>6 轮</b></span>
+    <span>采集 <b>YYYY-MM-DD HH:MM GMT+8</b></span>
+    <span>结论 <b>主推 1 · 备选 1 · 否决 1 类</b></span>
+  </div>
+</header>
+
+<nav>
+  <a href="#s1">01 定义</a>
+  <a href="#s2">02 候选池</a>
+  <a href="#s3">03 形态合规</a>
+  <a href="#s4">04 需求</a>
+  <a href="#s5">05 竞品投放</a>
+  <a href="#s6">06 零售锚</a>
+  <a href="#s7">07 货源实价</a>
+  <a href="#s8">08 站点结构</a>
+  <a href="#s9">09 收敛</a>
+  <a href="#s10">10 执行</a>
+  <a href="#s11">11 边界</a>
+</nav>
+
+<section id="s1">
+  <h2><span class="num">01 / DEFINITION</span>这次的「符合条件」指什么</h2>
+  <p>把前置条件逐条写出来，并说明每条为什么是硬条件。条件必须在取数前定稿。</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>硬条件</th><th>为什么硬</th><th>怎么判</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>美国单市场</strong></td><td>混入多国数据会让整批结论作废</td><td>Kalodata 市场 US / 30 天</td></tr>
+        <tr><td>8</td><td><strong>能做 $39+ 客单</strong></td><td>单件平衡 CPA 低于 $12 无法投放</td><td>可捆绑 / 可定制 / 可礼盒化</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout danger">
+    <span class="lb">阻塞项先写在第一章</span>
+    <p>与品无关但会让全案作废的卡点（如收款通路）必须放在这里，不要藏到附录。</p>
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="num">02 / POOL</span>候选池</h2>
+  <p>写清检索方式、轮次、去重规则，以及每个品的原始指标。</p>
+  <p class="srcnote">口径：GMV / 销量 / 增速 均为平台估算值 <span class="chip c">C 估算</span>，采集于 YYYY-MM-DD HH:MM。</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>ID</th><th>商品</th><th>30天 GMV</th><th>销量</th><th>均价</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>T1</td><td>示例商品</td><td class="num">$12.34 万</td><td class="num">1,234</td><td class="num">$31.00</td><td><span class="chip x">液体</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="num">03 / ROUND 1</span>形态与合规：N → M</h2>
+  <p>零取数成本的一轮。写淘汰归因聚类表，它本身是结论。</p>
+  <div class="callout">
+    <span class="lb">判据</span>
+    <p>命中任一条即出局：带电、液体、大件、尺码、重合规、节庆时效。</p>
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="num">04 / ROUND 2</span>需求层</h2>
+  <p>多词必须在同一次查询里，分开查的指数不可比。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">05 / ROUND 3</span>竞品投放</h2>
+  <p>数独立广告主，看连投时长。连投 90 天的比投了 7 天的有价值得多。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">06 / ROUND 4</span>零售锚</h2>
+  <p>这一轮通常直接杀死「卖单件」这个选项。溢价 > 3 倍且无差异化 → 死。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">07 / ROUND 5</span>货源实价</h2>
+  <p>带「新客专享」标签的价格一律不进成本表。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">08 / ROUND 6</span>站点结构</h2>
+  <p>付费流量占比 &gt; 40% 说明这个品类靠投放，自然流量救不了。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">09 / CONVERGENCE</span>收敛：结论、单位经济、敏感度</h2>
+  <h3>9.1 最终结论表</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>档位</th><th>品</th><th>形态</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip a">主推</span></td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span class="chip c">备选</span></td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><span class="chip x">否决</span></td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>9.2 单位经济</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>成本项</th><th class="num">金额</th><th>依据</th></tr></thead>
+      <tbody>
+        <tr><td>货品</td><td class="num">$0.00</td><td><span class="chip a">A 实价</span></td></tr>
+        <tr><td>物流</td><td class="num">$0.00</td><td><span class="chip x">未取得货代报价</span></td></tr>
+        <tr><td><strong>变动成本合计</strong></td><td class="num"><strong>$0.00</strong></td><td>—</td></tr>
+        <tr><td><strong>贡献毛利 / 平衡 CPA</strong></td><td class="num"><strong>$0.00</strong></td><td>售价 − 变动成本</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="srcnote">用 <code>scripts/contribution_margin.py</code> 生成此表并附敏感度。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10 / EXECUTION</span>执行与 Kill 条件</h2>
+  <ol>
+    <li><b>Gate 0（不花钱）：</b>收款通路能否完成一笔 $1 测试交易并提现。</li>
+    <li><b>第 1–2 周：</b>素材测试，只看 CTR 与完播，不看 ROAS。</li>
+    <li><b>第 4 周：</b>CPA、退款率、自然流量三项一起判。全过放量，过两项维持，其余 Kill。</li>
+  </ol>
+  <div class="callout warn">
+    <span class="lb">Kill 条件提前写死</span>
+    <p>连续 7 天 CPA &gt; 贡献毛利 → 立即停投。退款率高于阈值 → 换供应商。落地税费超预算 → 整表重算。</p>
+  </div>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11 / LIMITS</span>没验到的、口径陷阱、怎么复跑</h2>
+  <h3>11.1 明确没拿到的东西</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>缺什么</th><th>为什么缺</th><th>怎么补</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>落地税费实际值</td><td>税率未公开</td><td>问货代</td></tr>
+        <tr><td>2</td><td>真实退货率</td><td>无后台数据</td><td>上线 4 周后</td></tr>
+        <tr><td>3</td><td>实际 CPA</td><td>未投放</td><td>$1,000 测试</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>11.2 复跑路径</h3>
+  <p>每个数据源给出可点开的 URL，让别人能按同样顺序重做一遍。</p>
+</section>
+
+<footer>
+  采集时间范围 · 全部数据源列表 · 区间值与占位值已逐行标注，未取得项不进入结论。
+</footer>
+
+</div>
+<button id="theme" onclick="(function(h){var d=h.dataset.theme==='dark';h.dataset.theme=d?'light':'dark';this.textContent=d?'深色':'浅色';}).call(this,document.documentElement)">深色</button>
+</body>
+</html>
